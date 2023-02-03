@@ -7,7 +7,13 @@ namespace ElementaryCellularAutomata
         static void Main(string[] args)
         {
             eCA eca = new eCA();
-            eCA.Init();
+            eca.Init();
+            while (true)
+            {
+                eca.CalculateNextGeneration();
+                eca.ProgressGenerations();
+            }
+            
         }
     }
 }
