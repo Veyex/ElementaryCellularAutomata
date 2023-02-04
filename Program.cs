@@ -4,9 +4,9 @@ namespace ElementaryCellularAutomata
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            eCA eca = new eCA();
+            ECA eca = new();
             eca.Init();
             while (true)
             {
