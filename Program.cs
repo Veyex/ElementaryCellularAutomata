@@ -10,10 +10,10 @@ namespace ElementaryCellularAutomata
             eca.Init();
             while (true)
             {
+                eca.PrintCurrentGeneration();
                 eca.CalculateNextGeneration();
-                eca.ProgressGenerations();
+                Thread.Sleep(1000);
             }
-            
         }
     }
 }

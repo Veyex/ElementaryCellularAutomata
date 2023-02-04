@@ -32,8 +32,6 @@
             for (int i = 0; i <= 7; i++)
             {
                 int placehold = (int)(256 / Math.Pow(2, i + 1));
-                Console.Write(placehold);
-                Console.WriteLine(","+rule);
                 if ((rule - placehold) >= 0)
                 {
                     binRule += "1";
@@ -45,7 +43,7 @@
                 }
             }
             Console.WriteLine(binRule);
-            currentGeneration[5] = 1;
+            currentGeneration[3] = 1;
         }
         public void CalculateNextGeneration()
         {
@@ -56,26 +54,59 @@
                 {
                     if (neighbour >= 0 & neighbour < length)
                     {
-                        neighbourValue += Convert.ToString(currentGeneration[neighbour]);
+                        if (currentGeneration[neighbour] != 0)
+                        {
+                            neighbourValue += '1';
+                        }
+                        else
+                        {
+                            neighbourValue += '0';
+                        }
                     }
                     else
                     {
-                        neighbourValue += "0";
+                        neighbourValue += '0';
                     }
                 }
-                if (Convert.ToInt32(neighbourValue) == rule)
+                for (int i = 0; i < binRule.Length; i++)
                 {
-                    nextGeneration[target] = 1;
+                    if (binRule[i] == '1')
+                    {
+                        if (neighbourValue == ruleSet[i])
+                        {
+                            nextGeneration[target] = 1;
+                        }
+                        else
+                        {
+                            nextGeneration[target] = 0;
+                        }
+                    }
+                }
+            }
+            currentGeneration = nextGeneration;
+        }
+        public void PrintCurrentGeneration()
+        {
+            for (int i = 0; i < currentGeneration.Length; i++)
+            {
+                if (currentGeneration[i] == 1)
+                {
+                    Console.Write("\u2588");
                 }
                 else
                 {
-                    nextGeneration[target] = 0;
+                    Console.Write("\u00A0");
                 }
             }
+            Console.WriteLine();
         }
-        public void ProgressGenerations()
+        public void PrintNextGeneration()
         {
-            currentGeneration = nextGeneration;
+            for (int i = 0; i < nextGeneration.Length; i++)
+            {
+                Console.WriteLine(nextGeneration[i]);
+            }
+            Console.WriteLine();
         }
         #endregion
     }
