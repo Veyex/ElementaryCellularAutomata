@@ -11,8 +11,8 @@ namespace ElementaryCellularAutomata
             while (true)
             {
                 eca.PrintCurrentGeneration();
-                eca.CalculateNextGeneration();
-                //eca.PrintNextGeneration();
+                eca.CalculateNeighbourArray();
+                eca.ProgressGenerations();
                 Thread.Sleep(1000);
             }
         }

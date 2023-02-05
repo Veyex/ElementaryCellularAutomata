@@ -4,18 +4,19 @@
     {
         #region Properties & Fields
         public int length;
-        public string[] ruleSet = new string[] {"111", "110", "101", "100", "011", "010", "001", "000"};
         public int rule = 0;
+        public string neighbourValue = "";
         public string binRule = "";
         public int[] currentGeneration;
-        public int[] nextGeneration;
+        public string[] neighbourArray;
+        public string[] ruleSet = new string[] { "111", "110", "101", "100", "011", "010", "001", "000" };
         #endregion
 
         #region Constructors
         public ECA()
         {
             currentGeneration = new int[length];
-            nextGeneration = new int[length];
+            neighbourArray = new string[length];
         }
         #endregion
 
@@ -25,7 +26,7 @@
             Console.WriteLine("Enter Length:");
             length = Convert.ToInt32(Console.ReadLine());
             currentGeneration = new int[length];
-            nextGeneration = new int[length];
+            neighbourArray = new string[length];
             Console.WriteLine("Enter Rule:");
             rule = Convert.ToInt32(Console.ReadLine());
 
@@ -43,9 +44,9 @@
                 }
             }
             Console.WriteLine(binRule);
-            currentGeneration[2] = 1;
+            currentGeneration[30] = 1;
         }
-        public void CalculateNextGeneration()
+        public void CalculateNeighbourArray()
         {
             for (int target = 0; target < length; target++)
             {
@@ -68,45 +69,35 @@
                         neighbourValue += '0';
                     }
                 }
-                Console.WriteLine(neighbourValue);
-                for (int i = 0; i < binRule.Length; i++)
+                neighbourArray[target] = neighbourValue;
+            }
+        }
+        public void ProgressGenerations()
+        {
+            for (int target = 0; target < length; target++)
+            {
+                for (int i = 0; i < ruleSet.Length; i++)
                 {
                     if (binRule[i] == '1')
                     {
-                        if (neighbourValue == ruleSet[i])
+                        if (neighbourArray[target] == ruleSet[i])
                         {
-                            nextGeneration[target] = 1;
+                            currentGeneration[target] = 1;
                             break;
                         }
                         else
                         {
-                            nextGeneration[target] = 0;
+                            currentGeneration[target] = 0;
                         }
                     }
                 }
             }
-            currentGeneration = nextGeneration;
         }
         public void PrintCurrentGeneration()
         {
             for (int i = 0; i < currentGeneration.Length; i++)
             {
                 if (currentGeneration[i] == 1)
-                {
-                    Console.Write("\u2588");
-                }
-                else
-                {
-                    Console.Write("#");
-                }
-            }
-            Console.WriteLine();
-        }
-        public void PrintNextGeneration()
-        {
-            for (int i = 0; i < nextGeneration.Length; i++)
-            {
-                if (nextGeneration[i] == 1)
                 {
                     Console.Write("\u2588");
                 }
