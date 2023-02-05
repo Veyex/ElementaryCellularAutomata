@@ -43,7 +43,7 @@
                 }
             }
             Console.WriteLine(binRule);
-            currentGeneration[3] = 1;
+            currentGeneration[2] = 1;
         }
         public void CalculateNextGeneration()
         {
@@ -54,7 +54,7 @@
                 {
                     if (neighbour >= 0 & neighbour < length)
                     {
-                        if (currentGeneration[neighbour] != 0)
+                        if (currentGeneration[neighbour] == 1)
                         {
                             neighbourValue += '1';
                         }
@@ -68,6 +68,7 @@
                         neighbourValue += '0';
                     }
                 }
+                Console.WriteLine(neighbourValue);
                 for (int i = 0; i < binRule.Length; i++)
                 {
                     if (binRule[i] == '1')
@@ -75,6 +76,7 @@
                         if (neighbourValue == ruleSet[i])
                         {
                             nextGeneration[target] = 1;
+                            break;
                         }
                         else
                         {
@@ -95,7 +97,7 @@
                 }
                 else
                 {
-                    Console.Write("\u00A0");
+                    Console.Write("#");
                 }
             }
             Console.WriteLine();
@@ -104,7 +106,14 @@
         {
             for (int i = 0; i < nextGeneration.Length; i++)
             {
-                Console.WriteLine(nextGeneration[i]);
+                if (nextGeneration[i] == 1)
+                {
+                    Console.Write("\u2588");
+                }
+                else
+                {
+                    Console.Write("#");
+                }
             }
             Console.WriteLine();
         }
