@@ -44,7 +44,7 @@
                 }
             }
             Console.WriteLine(binRule);
-            currentGeneration[30] = 1;
+            currentGeneration[Convert.ToInt32(length /2)] = 1;
         }
         public void CalculateNeighbourArray()
         {
