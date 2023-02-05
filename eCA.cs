@@ -103,7 +103,7 @@
                 }
                 else
                 {
-                    Console.Write("#");
+                    Console.Write("\u00A0");
                 }
             }
             Console.WriteLine();
